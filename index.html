@@ -1,0 +1,688 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pesquisas Remuneradas • Informações e Grupos</title>
+  <meta name="description" content="Entenda como funcionam as pesquisas remuneradas e entre no grupo da sua região." />
+
+  <style>
+    :root{
+      --bg: #0b1020;
+      --card: rgba(255,255,255,.06);
+      --card2: rgba(255,255,255,.04);
+      --border: rgba(255,255,255,.12);
+      --text: #eef1ff;
+      --muted: rgba(238,241,255,.68);
+      --muted2: rgba(238,241,255,.52);
+      --accent: #7c5cff;
+      --accent2:#2ee59d;
+      --shadow: 0 14px 40px rgba(0,0,0,.35);
+      --radius: 18px;
+      --radius2: 14px;
+      --max: 1050px;
+    }
+
+    *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Helvetica Neue", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(1200px 700px at 18% -12%, rgba(124,92,255,.34), transparent 60%),
+        radial-gradient(900px 600px at 92% 0%, rgba(46,229,157,.18), transparent 55%),
+        radial-gradient(900px 600px at 50% 120%, rgba(124,92,255,.14), transparent 60%),
+        var(--bg);
+      line-height: 1.6;
+    }
+
+    a{ color: inherit; text-decoration:none; }
+    .container{ max-width: var(--max); margin: 0 auto; padding: 18px 18px 70px; }
+
+    /* Topbar */
+    .topbar{
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(10px);
+      background: linear-gradient(180deg, rgba(11,16,32,.78), rgba(11,16,32,.45));
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .topbar-inner{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 12px 18px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .brand{
+      display:flex; align-items:center; gap: 12px;
+      min-width: 240px;
+    }
+    .logo{
+      width: 42px; height: 42px; border-radius: 14px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: var(--shadow);
+      flex: 0 0 auto;
+    }
+    .brand h1{
+      font-size: 16px; margin:0;
+      letter-spacing:.2px;
+    }
+    .brand p{
+      margin: 2px 0 0; font-size: 12px; color: var(--muted);
+    }
+
+    .nav{
+      display:flex; gap: 10px; align-items:center; flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    .pill{
+      display:inline-flex; align-items:center; gap: 8px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.05);
+      transition: transform .14s ease, background .14s ease, border .14s ease;
+      font-size: 13px;
+      color: var(--text);
+      cursor: pointer;
+      user-select:none;
+    }
+    .pill:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.08);
+      border-color: rgba(255,255,255,.18);
+    }
+    .pill.primary{
+      border: 1px solid rgba(124,92,255,.35);
+      background: rgba(124,92,255,.14);
+    }
+
+    /* Hero */
+    .hero{
+      margin-top: 18px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,.10);
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .hero-inner{
+      padding: 18px;
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 14px;
+      align-items: start;
+    }
+    @media (max-width: 900px){
+      .hero-inner{ grid-template-columns: 1fr; }
+    }
+
+    .hero h2{ margin: 0 0 8px; font-size: 22px; letter-spacing:.2px; }
+    .hero p{ margin: 0; color: var(--muted); }
+    .hero .mini{
+      display:flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 14px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.12);
+    }
+    .mini strong{ font-size: 13px; }
+    .mini span{ font-size: 13px; color: var(--muted2); }
+
+    /* Sections */
+    .grid{
+      margin-top: 16px;
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 16px;
+      align-items:start;
+    }
+    @media (max-width: 900px){
+      .grid{ grid-template-columns: 1fr; }
+    }
+
+    .card{
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,.10);
+      background: var(--card);
+      box-shadow: var(--shadow);
+      padding: 16px;
+    }
+    .card h3{
+      margin: 0 0 12px;
+      font-size: 16px;
+      letter-spacing:.2px;
+    }
+
+    /* Accordion */
+    details{
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      border-radius: 16px;
+      padding: 12px 12px;
+      margin: 10px 0;
+      transition: background .15s ease, border .15s ease;
+    }
+    details[open]{
+      background: rgba(255,255,255,.06);
+      border-color: rgba(255,255,255,.16);
+    }
+    summary{
+      cursor: pointer;
+      list-style: none;
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 14px;
+    }
+    summary::-webkit-details-marker{ display:none; }
+    .chev{
+      width: 28px; height: 28px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,.10);
+      display:grid; place-items:center;
+      background: rgba(0,0,0,.12);
+      flex: 0 0 auto;
+      transition: transform .18s ease;
+    }
+    details[open] .chev{ transform: rotate(180deg); }
+    .content{
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .content ul{ margin: 10px 0; padding-left: 18px; }
+    .content li{ margin: 6px 0; }
+
+    /* Callouts */
+    .callout{
+      margin-top: 10px;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px dashed rgba(255,255,255,.18);
+      background: rgba(124,92,255,.10);
+      color: var(--text);
+      font-size: 13px;
+    }
+    .callout strong{ color: var(--text); }
+
+    /* Groups */
+    .tools{
+      display:flex;
+      gap: 10px;
+      align-items:center;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+    .tools input{
+      flex: 1 1 240px;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+      color: var(--text);
+      outline: none;
+    }
+    .tools input::placeholder{ color: rgba(238,241,255,.55); }
+
+    .badge{
+      font-size: 12px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(46,229,157,.10);
+      color: var(--text);
+      white-space: nowrap;
+    }
+
+    .groups{
+      display:flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .group{
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 12px 12px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      transition: transform .14s ease, background .14s ease, border .14s ease;
+    }
+    .group:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.06);
+      border-color: rgba(255,255,255,.16);
+    }
+    .group .title{
+      font-weight: 800;
+      font-size: 14px;
+      margin:0;
+    }
+    .group .desc{
+      margin: 2px 0 0;
+      font-size: 12px;
+      color: var(--muted2);
+    }
+
+    /* Floating button */
+    .float{
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      z-index: 60;
+    }
+    .float a{
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      padding: 12px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(124,92,255,.35);
+      background: rgba(124,92,255,.16);
+      box-shadow: var(--shadow);
+      font-weight: 700;
+      font-size: 13px;
+    }
+
+    footer{
+      margin-top: 16px;
+      text-align:center;
+      color: rgba(238,241,255,.55);
+      font-size: 12px;
+      padding: 8px 0 0;
+    }
+
+    /* Utility */
+    .kicker{
+      color: rgba(238,241,255,.55);
+      font-size: 12px;
+      margin-top: -6px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <h1>Pesquisas Remuneradas</h1>
+          <p>Informações claras + links dos grupos por região</p>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <a class="pill" href="#como-funciona">Como funciona</a>
+        <a class="pill" href="#boas-praticas">Boas práticas</a>
+        <a class="pill primary" href="#grupos">Ver grupos</a>
+        <button class="pill" id="btn-copiar" type="button">Copiar orientações</button>
+      </nav>
+    </div>
+  </div>
+
+  <div class="container">
+    <section class="hero">
+      <div class="hero-inner">
+        <div>
+          <h2>Participe com segurança e aumente suas chances ✅</h2>
+          <p>
+            Leia com atenção antes de se candidatar. O conteúdo abaixo explica como funcionam as pesquisas remuneradas
+            e como participar corretamente para evitar exclusões e bloqueios.
+          </p>
+        </div>
+
+        <div class="mini">
+          <div>
+            <strong>Regra de ouro</strong><br />
+            <span>Candidate-se apenas se puder participar no dia e no formato solicitado (PC/notebook, presencial etc.).</span>
+          </div>
+          <div>
+            <strong>Dica rápida</strong><br />
+            <span>Use o filtro dos grupos para achar sua região em segundos.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid">
+      <!-- Conteúdo -->
+      <section class="card" id="como-funciona">
+        <h3>Como funciona</h3>
+        <p class="kicker">O texto está em blocos dobráveis para facilitar a leitura.</p>
+
+        <details open>
+          <summary>
+            <span>📌 O que são pesquisas remuneradas?</span>
+            <span class="chev" aria-hidden="true">⌄</span>
+          </summary>
+          <div class="content">
+            <p>
+              As pesquisas remuneradas podem ser realizadas de forma <strong>individual ou em grupo</strong>,
+              tanto <strong>online</strong> quanto <strong>presencial</strong>, dependendo do estudo e da empresa responsável.
+            </p>
+          </div>
+        </details>
+
+        <details>
+          <summary>
+            <span>💻 Requisitos para pesquisas online</span>
+            <span class="chev" aria-hidden="true">⌄</span>
+          </summary>
+          <div class="content">
+            <p>
+              Para participar das pesquisas online, normalmente é necessário ter um <strong>computador ou notebook</strong>
+              com <strong>câmera</strong> e <strong>áudio</strong> funcionando.
+              Na maioria dos casos, <strong>não é permitido participar pelo celular</strong>.
+              Quando você se candidata e é qualificado(a), essas informações são comunicadas previamente.
+            </p>
+
+            <div class="callout">
+              ⚠️ <strong>Atenção:</strong> Se a pesquisa exigir PC/notebook e você entrar pelo celular, o sistema identifica o dispositivo.
+              Isso pode causar <strong>exclusão automática</strong> e impedir convites futuros com o mesmo recrutador.
+            </div>
+          </div>
+        </details>
+
+        <details>
+          <summary>
+            <span>🧠 O que é feito nessas pesquisas?</span>
+            <span class="chev" aria-hidden="true">⌄</span>
+          </summary>
+          <div class="content">
+            <p>
+              Empresas, marcas e fabricantes realizam esses estudos para coletar opiniões de consumidores por diversos motivos, como:
+            </p>
+            <ul>
+              <li>Avaliar o uso de um produto no mercado</li>
+              <li>Melhorar ou modificar produtos existentes</li>
+              <li>Decidir pela descontinuação de um produto</li>
+              <li>Alterar embalagens</li>
+              <li>Desenvolver campanhas publicitárias</li>
+              <li>Ajustar produtos com base na experiência real dos usuários</li>
+            </ul>
+            <p>
+              Geralmente é um bate-papo online (PC/notebook) ou presencial em casas de pesquisa.
+            </p>
+          </div>
+        </details>
+
+        <details>
+          <summary>
+            <span>💸 Remuneração e forma de pagamento</span>
+            <span class="chev" aria-hidden="true">⌄</span>
+          </summary>
+          <div class="content">
+            <p>
+              As pesquisas são <strong>remuneradas</strong> e o valor do incentivo é informado <strong>antes</strong> do estudo.
+              O pagamento pode ser feito por <strong>depósito bancário</strong>, <strong>Pix</strong> ou <strong>voucher</strong>.
+            </p>
+            <p>
+              O prazo aproximado e o método de pagamento são comunicados previamente pela recrutadora (na publicação e/ou no contato direto).
+            </p>
+          </div>
+        </details>
+      </section>
+
+      <!-- Boas práticas + grupos -->
+      <aside class="card" id="boas-praticas">
+        <h3>Boas práticas para se candidatar</h3>
+
+        <details open>
+          <summary>
+            <span>✅ Como mandar mensagem do jeito certo</span>
+            <span class="chev" aria-hidden="true">⌄</span>
+          </summary>
+          <div class="content">
+            <p>
+              Leia atentamente cada publicação e envie <strong>todos os dados solicitados</strong> (nome, idade, perfil, etc.).
+              Mensagens genéricas como “Olá, quero participar” costumam não ser respondidas devido ao grande número de candidatos.
+            </p>
+            <div class="callout">
+              <strong>Dica:</strong> copie e cole os dados pedidos (nome, idade, cidade, etc.) já no primeiro envio.
+            </div>
+          </div>
+        </details>
+
+        <details>
+          <summary>
+            <span>📲 Respeite a forma de contato indicada</span>
+            <span class="chev" aria-hidden="true">⌄</span>
+          </summary>
+          <div class="content">
+            <p>
+              Cada recrutador informa como deseja receber as candidaturas (WhatsApp ou formulário).
+              Não adianta ligar se o pedido for mensagem ou formulário — isso pode gerar <strong>bloqueio</strong>.
+            </p>
+            <p>
+              Envie os dados conforme solicitado e <strong>aguarde</strong>. Se você estiver dentro do perfil, o recrutador entrará em contato.
+            </p>
+          </div>
+        </details>
+
+        <details>
+          <summary>
+            <span>🧾 Seja sempre honesto(a)</span>
+            <span class="chev" aria-hidden="true">⌄</span>
+          </summary>
+          <div class="content">
+            <p>
+              Não forneça informações falsas, especialmente sobre idade. Durante a pesquisa, pode ser solicitado documento para validação.
+            </p>
+          </div>
+        </details>
+
+        <details>
+          <summary>
+            <span>🛡️ Atenção a possíveis golpes</span>
+            <span class="chev" aria-hidden="true">⌄</span>
+          </summary>
+          <div class="content">
+            <p>
+              Se alguém chamar no privado enviando links de outros grupos ou “pesquisas”, desconfie, principalmente se não for recrutador oficial.
+              Em caso de dúvida, entre em contato com a administração.
+            </p>
+          </div>
+        </details>
+
+        <div class="callout" style="margin-top:12px;">
+          🚨 <strong>Comprometimento:</strong> candidate-se apenas se realmente puder participar.
+          Faltar no dia pode reduzir suas chances de receber convites futuros.
+        </div>
+      </aside>
+    </section>
+
+    <section class="card" id="grupos" style="margin-top:16px;">
+      <h3>Links dos grupos</h3>
+      <p class="kicker">Use o filtro para encontrar sua região rapidamente.</p>
+
+      <div class="tools">
+        <input id="filtro" type="text" placeholder="Filtrar (ex: SP, Bahia, Sul, Nordeste, LGBTQIAPN+)" />
+        <span class="badge" id="contador">0 grupos</span>
+      </div>
+
+      <div class="groups" id="lista">
+        <!-- SP -->
+        <a class="group" href="https://chat.whatsapp.com/GWYgFNeJRXhLIIS4IrYhej?mode=wwc" target="_blank" rel="noopener">
+          <div>
+            <p class="title">Interior de São Paulo</p>
+            <p class="desc">Grupo para moradores do interior de SP</p>
+          </div>
+          <span class="badge">WhatsApp</span>
+        </a>
+
+        <a class="group" href="https://chat.whatsapp.com/LdhmfFS38Op9hPUDo4TS3f?mode=hqrt2" target="_blank" rel="noopener">
+          <div>
+            <p class="title">São Paulo (capital e região)</p>
+            <p class="desc">Grupo para moradores de São Paulo</p>
+          </div>
+          <span class="badge">WhatsApp</span>
+        </a>
+
+        <!-- RJ -->
+        <a class="group" href="https://chat.whatsapp.com/E8UuHvaP9d6IuuSgEH5O6W?mode=wwc" target="_blank" rel="noopener">
+          <div>
+            <p class="title">Rio de Janeiro</p>
+            <p class="desc">Grupo para moradores do RJ</p>
+          </div>
+          <span class="badge">WhatsApp</span>
+        </a>
+
+        <!-- BA -->
+        <a class="group" href="https://chat.whatsapp.com/HUwY0WLYNDI7xCMBT2izft?mode=wwc" target="_blank" rel="noopener">
+          <div>
+            <p class="title">Bahia</p>
+            <p class="desc">Grupo para moradores da Bahia</p>
+          </div>
+          <span class="badge">WhatsApp</span>
+        </a>
+
+        <!-- PE -->
+        <a class="group" href="https://chat.whatsapp.com/CBnKtnDuFg37lQdqkBBRqZ?mode=wwc" target="_blank" rel="noopener">
+          <div>
+            <p class="title">Pernambuco</p>
+            <p class="desc">Grupo para moradores de Pernambuco</p>
+          </div>
+          <span class="badge">WhatsApp</span>
+        </a>
+
+        <!-- CO -->
+        <a class="group" href="https://chat.whatsapp.com/Jhk1jP2Tu14EjbxzkcEoHX?mode=wwc" target="_blank" rel="noopener">
+          <div>
+            <p class="title">Centro-Oeste</p>
+            <p class="desc">MT, MS e GO</p>
+          </div>
+          <span class="badge">WhatsApp</span>
+        </a>
+
+        <!-- Norte -->
+        <a class="group" href="https://chat.whatsapp.com/IyP8apY6kAE3ShJPdBUOqq?mode=wwc" target="_blank" rel="noopener">
+          <div>
+            <p class="title">Região Norte</p>
+            <p class="desc">AM, PA, RR, AP, RO, AC e TO</p>
+          </div>
+          <span class="badge">WhatsApp</span>
+        </a>
+
+        <!-- MG/ES -->
+        <a class="group" href="https://chat.whatsapp.com/I9v1gBXmEnd0j7f0WNarmh?mode=wwc" target="_blank" rel="noopener">
+          <div>
+            <p class="title">Minas Gerais e Espírito Santo</p>
+            <p class="desc">Grupo para moradores de MG e ES</p>
+          </div>
+          <span class="badge">WhatsApp</span>
+        </a>
+
+        <!-- NE -->
+        <a class="group" href="https://chat.whatsapp.com/CRYtacv8VPIHduHMv4vEmo?mode=wwc" target="_blank" rel="noopener">
+          <div>
+            <p class="title">Região Nordeste</p>
+            <p class="desc">PI, MA, PE, RN, PB, CE, BA, AL e SE</p>
+          </div>
+          <span class="badge">WhatsApp</span>
+        </a>
+
+        <!-- Sul -->
+        <a class="group" href="https://chat.whatsapp.com/KbDJN1aN6PZCQ0nQAOJRGs?mode=wwc" target="_blank" rel="noopener">
+          <div>
+            <p class="title">Região Sul</p>
+            <p class="desc">PR, SC e RS</p>
+          </div>
+          <span class="badge">WhatsApp</span>
+        </a>
+
+        <!-- LGBTQIAPN+ -->
+        <a class="group" href="https://chat.whatsapp.com/GX5bas5nNPXHHZhFSLspsu?mode=wwc" target="_blank" rel="noopener">
+          <div>
+            <p class="title">Grupo LGBTQIAPN+</p>
+            <p class="desc">Comunidade LGBTQIAPN+</p>
+          </div>
+          <span class="badge">WhatsApp</span>
+        </a>
+
+        <!-- Negros -->
+        <a class="group" href="https://chat.whatsapp.com/LXRWKKIVi8FEZmfnALQioc?mode=ac_t" target="_blank" rel="noopener">
+          <div>
+            <p class="title">Homens e mulheres negras</p>
+            <p class="desc">(não pardas) — apenas com foto no perfil (produtos de beleza)</p>
+          </div>
+          <span class="badge">WhatsApp</span>
+        </a>
+      </div>
+
+      <div class="callout" style="margin-top:14px;">
+        🎯 <strong>Boas pesquisas!</strong> Use o filtro acima para achar seu grupo e entre apenas no que corresponde ao seu perfil/região.
+      </div>
+    </section>
+
+    <footer>
+      © <span id="ano"></span> • Página informativa
+    </footer>
+  </div>
+
+  <div class="float">
+    <a href="#grupos">📍 Ir para os grupos</a>
+  </div>
+
+  <script>
+    // Ano
+    document.getElementById("ano").textContent = new Date().getFullYear();
+
+    // Copiar orientações (conteúdo de "Como funciona" + "Boas práticas")
+    document.getElementById("btn-copiar").addEventListener("click", async () => {
+      const texto = [
+        document.getElementById("como-funciona").innerText,
+        document.getElementById("boas-praticas").innerText
+      ].join("\\n\\n").trim();
+
+      try{
+        await navigator.clipboard.writeText(texto);
+        alert("Orientações copiadas!");
+      }catch(e){
+        alert("Não consegui copiar automaticamente. Selecione e copie manualmente.");
+      }
+    });
+
+    // Filtro dos grupos
+    const input = document.getElementById("filtro");
+    const lista = document.getElementById("lista");
+    const contador = document.getElementById("contador");
+    const grupos = Array.from(lista.querySelectorAll(".group"));
+
+    function atualizarContador(qtd){
+      contador.textContent = qtd + (qtd === 1 ? " grupo" : " grupos");
+    }
+
+    function filtrar(){
+      const termo = input.value.toLowerCase().trim();
+      let visiveis = 0;
+
+      grupos.forEach(g => {
+        const texto = g.innerText.toLowerCase();
+        const ok = termo === "" || texto.includes(termo);
+        g.style.display = ok ? "flex" : "none";
+        if(ok) visiveis++;
+      });
+
+      atualizarContador(visiveis);
+    }
+
+    input.addEventListener("input", filtrar);
+    atualizarContador(grupos.length);
+  </script>
+</body>
+</html>
