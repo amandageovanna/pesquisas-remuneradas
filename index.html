@@ -8,19 +8,28 @@
 
   <style>
     :root{
-      --bg: #0b1020;
-      --card: rgba(255,255,255,.06);
-      --card2: rgba(255,255,255,.04);
-      --border: rgba(255,255,255,.12);
-      --text: #eef1ff;
-      --muted: rgba(238,241,255,.68);
-      --muted2: rgba(238,241,255,.52);
-      --accent: #7c5cff;
-      --accent2:#2ee59d;
-      --shadow: 0 14px 40px rgba(0,0,0,.35);
+      /* Fundo geral */
+      --bg: #27818f; 
+
+      --card: #ffffff;
+      --card2: #f8f8f8;
+      --border: rgba(0,0,0,.15);
+
+      --text: #1f1f1f;
+      --muted: rgba(31,31,31,.7);
+      --muted2: rgba(31,31,31,.55);
+
+      --accent: #FFB83F;  /* Citrus */
+      --accent2: #D6456D; /* Raspberry */
+      --accent3: #1482A5; /* Hawaiian Surf */
+
+      --shadow: 0 12px 30px rgba(0,0,0,.25);
       --radius: 18px;
       --radius2: 14px;
       --max: 1050px;
+
+      --whatsapp: #25D366;
+      --whatsapp-soft: rgba(37,211,102,.18);
     }
 
     *{ box-sizing:border-box; }
@@ -30,9 +39,9 @@
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Helvetica Neue", sans-serif;
       color: var(--text);
       background:
-        radial-gradient(1200px 700px at 18% -12%, rgba(124,92,255,.34), transparent 60%),
-        radial-gradient(900px 600px at 92% 0%, rgba(46,229,157,.18), transparent 55%),
-        radial-gradient(900px 600px at 50% 120%, rgba(124,92,255,.14), transparent 60%),
+        radial-gradient(900px 600px at 10% -10%, rgba(20,130,165,.25), transparent 60%),
+        radial-gradient(900px 600px at 95% 0%, rgba(214,69,109,.22), transparent 55%),
+        radial-gradient(900px 600px at 50% 120%, rgba(255,184,63,.25), transparent 60%),
         var(--bg);
       line-height: 1.6;
     }
@@ -46,7 +55,7 @@
       top: 0;
       z-index: 50;
       backdrop-filter: blur(10px);
-      background: linear-gradient(180deg, rgba(11,16,32,.78), rgba(11,16,32,.45));
+      background: linear-gradient(180deg, rgb(151 158 181 / 78%), rgb(208 219 255 / 45%));
       border-bottom: 1px solid rgba(255,255,255,.08);
     }
     .topbar-inner{
@@ -65,7 +74,7 @@
     }
     .logo{
       width: 42px; height: 42px; border-radius: 14px;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      background: url("logo.jpeg") center/cover no-repeat; 
       box-shadow: var(--shadow);
       flex: 0 0 auto;
     }
@@ -86,29 +95,30 @@
       padding: 10px 12px;
       border-radius: 999px;
       border: 1px solid var(--border);
-      background: rgba(255,255,255,.05);
+      background: rgba(0, 0, 0, 0.05);
       transition: transform .14s ease, background .14s ease, border .14s ease;
       font-size: 13px;
-      color: var(--text);
+      color: #000000;
       cursor: pointer;
       user-select:none;
     }
     .pill:hover{
       transform: translateY(-1px);
       background: rgba(255,255,255,.08);
-      border-color: rgba(255,255,255,.18);
+      border-color: rgba(0, 0, 0, 0.18);
     }
     .pill.primary{
-      border: 1px solid rgba(124,92,255,.35);
-      background: rgba(124,92,255,.14);
+      border: 1px solid rgb(0 0 0 / 35%);
+     background: rgb(213 213 213);
     }
+    
 
     /* Hero */
     .hero{
       margin-top: 18px;
       border-radius: var(--radius);
       border: 1px solid rgba(255,255,255,.10);
-      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      background: #ffffff; 
       box-shadow: var(--shadow);
       overflow:hidden;
     }
@@ -126,15 +136,19 @@
     .hero h2{ margin: 0 0 8px; font-size: 22px; letter-spacing:.2px; }
     .hero p{ margin: 0; color: var(--muted); }
     .hero .mini{
-      display:flex;
+      display: flex;
       flex-direction: column;
       gap: 10px;
       padding: 14px;
+      border: 2px dashed #3f788a;
+      background: #cce5ed;
+      color: #1f1f1f;
       border-radius: var(--radius);
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(0,0,0,.12);
     }
     .mini strong{ font-size: 13px; }
+    .hero .mini strong{
+      color: #1f1f1f;
+    }
     .mini span{ font-size: 13px; color: var(--muted2); }
 
     /* Sections */
@@ -164,7 +178,7 @@
 
     /* Accordion */
     details{
-      border: 1px solid rgba(255,255,255,.10);
+      border: 1px solid rgba(0, 0, 0, 0.35); 
       background: rgba(255,255,255,.04);
       border-radius: 16px;
       padding: 12px 12px;
@@ -173,7 +187,7 @@
     }
     details[open]{
       background: rgba(255,255,255,.06);
-      border-color: rgba(255,255,255,.16);
+      border-color: rgba(0, 0, 0, 0.55);
     }
     summary{
       cursor: pointer;
@@ -209,8 +223,8 @@
       margin-top: 10px;
       padding: 12px 12px;
       border-radius: 14px;
-      border: 1px dashed rgba(255,255,255,.18);
-      background: rgba(124,92,255,.10);
+      background: rgb(155 124 249 / 25%);
+      border: 1px dashed rgba(64, 44, 124, 0.25);
       color: var(--text);
       font-size: 13px;
     }
@@ -236,13 +250,14 @@
     .tools input::placeholder{ color: rgba(238,241,255,.55); }
 
     .badge{
-      font-size: 12px;
-      padding: 7px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.14);
-      background: rgba(46,229,157,.10);
-      color: var(--text);
-      white-space: nowrap;
+        font-size: 12px;
+        padding: 7px 10px;
+        border-radius: 999px;
+        background: linear-gradient(135deg, #25D366, #1fb85a);
+        color: #000000;
+        border: none;
+        white-space: nowrap;
+        font-weight: 600;
     }
 
     .groups{
@@ -258,15 +273,24 @@
       gap: 10px;
       padding: 12px 12px;
       border-radius: 16px;
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
-      transition: transform .14s ease, background .14s ease, border .14s ease;
+      background: linear-gradient(
+        135deg,
+        rgba(20,130,165,.18),
+        rgba(180,106,163,.18)
+      );
+      border: 1px solid rgba(111,94,151,.35);
+      transition: transform .14s ease, background .14s ease, border .14s ease, box-shadow .14s ease;
     }
-    .group:hover{
+     .group:hover{
       transform: translateY(-1px);
-      background: rgba(255,255,255,.06);
-      border-color: rgba(255,255,255,.16);
-    }
+      background: linear-gradient(
+        135deg,
+        rgba(20,130,165,.28),
+        rgba(214,69,109,.28)
+      );
+      border-color: rgba(255,255,255,.06);
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.25);
+  }
     .group .title{
       font-weight: 800;
       font-size: 14px;
@@ -301,14 +325,14 @@
     footer{
       margin-top: 16px;
       text-align:center;
-      color: rgba(238,241,255,.55);
+      color: rgba(0, 0, 0, 0.55);
       font-size: 12px;
       padding: 8px 0 0;
     }
 
     /* Utility */
     .kicker{
-      color: rgba(238,241,255,.55);
+      color: rgba(0, 0, 0, 0.55);
       font-size: 12px;
       margin-top: -6px;
     }
@@ -321,8 +345,7 @@
       <div class="brand">
         <div class="logo" aria-hidden="true"></div>
         <div>
-          <h1>Pesquisas Remuneradas</h1>
-          <p>Informações claras + links dos grupos por região</p>
+          <h1>Pesquisas Remuneradas</h1>        
         </div>
       </div>
 
@@ -363,7 +386,7 @@
       <!-- Conteúdo -->
       <section class="card" id="como-funciona">
         <h3>Como funciona</h3>
-        <p class="kicker">O texto está em blocos dobráveis para facilitar a leitura.</p>
+        
 
         <details open>
           <summary>
@@ -385,15 +408,15 @@
           </summary>
           <div class="content">
             <p>
-              Para participar das pesquisas online, normalmente é necessário ter um <strong>computador ou notebook</strong>
+              Para participar das pesquisas online, é necessário ter um <strong>computador ou notebook</strong>
               com <strong>câmera</strong> e <strong>áudio</strong> funcionando.
               Na maioria dos casos, <strong>não é permitido participar pelo celular</strong>.
               Quando você se candidata e é qualificado(a), essas informações são comunicadas previamente.
             </p>
 
             <div class="callout">
-              ⚠️ <strong>Atenção:</strong> Se a pesquisa exigir PC/notebook e você entrar pelo celular, o sistema identifica o dispositivo.
-              Isso pode causar <strong>exclusão automática</strong> e impedir convites futuros com o mesmo recrutador.
+            ⚠️ <strong>Atenção:</strong> Se a pesquisa exigir o uso de PC ou notebook e você acessar pelo celular, o sistema identificará o dispositivo.
+  Isso pode resultar em <strong>exclusão automática</strong>, impedir convites futuros do mesmo recrutador e fazer com que você não receba o incentivo.
             </div>
           </div>
         </details>
@@ -415,9 +438,7 @@
               <li>Desenvolver campanhas publicitárias</li>
               <li>Ajustar produtos com base na experiência real dos usuários</li>
             </ul>
-            <p>
-              Geralmente é um bate-papo online (PC/notebook) ou presencial em casas de pesquisa.
-            </p>
+           
           </div>
         </details>
 
@@ -440,7 +461,7 @@
 
       <!-- Boas práticas + grupos -->
       <aside class="card" id="boas-praticas">
-        <h3>Boas práticas para se candidatar</h3>
+        <h3>Como se candidatar?</h3>
 
         <details open>
           <summary>
@@ -508,13 +529,9 @@
 
     <section class="card" id="grupos" style="margin-top:16px;">
       <h3>Links dos grupos</h3>
-      <p class="kicker">Use o filtro para encontrar sua região rapidamente.</p>
+      <p class="kicker">Escolha e clique no grupo do seu estado abaixo:</p>
 
-      <div class="tools">
-        <input id="filtro" type="text" placeholder="Filtrar (ex: SP, Bahia, Sul, Nordeste, LGBTQIAPN+)" />
-        <span class="badge" id="contador">0 grupos</span>
-      </div>
-
+     
       <div class="groups" id="lista">
         <!-- SP -->
         <a class="group" href="https://chat.whatsapp.com/GWYgFNeJRXhLIIS4IrYhej?mode=wwc" target="_blank" rel="noopener">
@@ -525,13 +542,25 @@
           <span class="badge">WhatsApp</span>
         </a>
 
+        <!-- SP (1) -->
         <a class="group" href="https://chat.whatsapp.com/LdhmfFS38Op9hPUDo4TS3f?mode=hqrt2" target="_blank" rel="noopener">
           <div>
-            <p class="title">São Paulo (capital e região)</p>
-            <p class="desc">Grupo para moradores de São Paulo</p>
+            <p class="title">São Paulo (capital e região) — Grupo 1</p>
+            <p class="desc">Grupo para moradores de São Paulo (grupo 1)</p>
           </div>
           <span class="badge">WhatsApp</span>
         </a>
+
+        <!-- SP (2) -->
+        <a class="group" href="https://chat.whatsapp.com/F2yJ3Y4qiWIEGc40D2YSNh?mode=gi_c" target="_blank" rel="noopener">
+          <div>
+            <p class="title">São Paulo (capital e região) — Grupo 2</p>
+            <p class="desc">Grupo para moradores de São Paulo (grupo 2)</p>
+          </div>
+          <span class="badge">WhatsApp</span>
+        </a>
+
+        
 
         <!-- RJ -->
         <a class="group" href="https://chat.whatsapp.com/E8UuHvaP9d6IuuSgEH5O6W?mode=wwc" target="_blank" rel="noopener">
@@ -623,10 +652,7 @@
           <span class="badge">WhatsApp</span>
         </a>
       </div>
-
-      <div class="callout" style="margin-top:14px;">
-        🎯 <strong>Boas pesquisas!</strong> Use o filtro acima para achar seu grupo e entre apenas no que corresponde ao seu perfil/região.
-      </div>
+     
     </section>
 
     <footer>
