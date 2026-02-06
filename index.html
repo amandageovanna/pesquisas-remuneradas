@@ -49,29 +49,7 @@
     a{ color: inherit; text-decoration:none; }
     .container{ max-width: var(--max); margin: 0 auto; padding: 18px 18px 70px; }
 
-    /* Topbar */
-    .topbar{
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      backdrop-filter: blur(10px);
-      background: linear-gradient(180deg, rgb(151 158 181 / 78%), rgb(208 219 255 / 45%));
-      border-bottom: 1px solid rgba(255,255,255,.08);
-    }
-    .topbar-inner{
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 12px 18px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
-    .brand{
-      display:flex; align-items:center; gap: 12px;
-      min-width: 240px;
-    }
+    
     .logo{
       width: 42px; height: 42px; border-radius: 14px;
       background: url("logo.jpeg") center/cover no-repeat; 
@@ -86,22 +64,7 @@
       margin: 2px 0 0; font-size: 12px; color: var(--muted);
     }
 
-    .nav{
-      display:flex; gap: 10px; align-items:center; flex-wrap: wrap;
-      justify-content: flex-end;
-    }
-    .pill{
-      display:inline-flex; align-items:center; gap: 8px;
-      padding: 10px 12px;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      background: rgba(0, 0, 0, 0.05);
-      transition: transform .14s ease, background .14s ease, border .14s ease;
-      font-size: 13px;
-      color: #000000;
-      cursor: pointer;
-      user-select:none;
-    }
+   
     .pill:hover{
       transform: translateY(-1px);
       background: rgba(255,255,255,.08);
@@ -323,12 +286,13 @@
     }
 
     footer{
-      margin-top: 16px;
-      text-align:center;
-      color: rgba(0, 0, 0, 0.55);
-      font-size: 12px;
-      padding: 8px 0 0;
-    }
+  grid-column: 1 / -1; /* não faz mal mesmo fora do grid */
+  text-align:center;
+  width: 100%;
+  color: rgba(0, 0, 0, 0.55);
+  font-size: 12px;
+  padding: 18px 0 10px;
+}
 
     /* Utility */
     .kicker{
@@ -336,27 +300,74 @@
       font-size: 12px;
       margin-top: -6px;
     }
+
+ .simple-header{
+  max-width: var(--max);
+  margin: 18px auto 10px;
+  padding: 0 18px;
+}
+
+.header-inner{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 16px 18px;
+  border-radius: 22px;
+  background: rgba(255,255,255,.95);
+  border: 1px solid rgba(0,0,0,.12);
+  box-shadow: var(--shadow);
+  position: relative;
+  overflow: hidden;
+}
+
+/* detalhe de cor discreto */
+.header-inner::after{
+  content:"";
+  position:absolute;
+  inset: auto -60px -60px auto;
+  width: 180px;
+  height: 180px;
+  
+}
+
+.header-inner h1{
+  margin: 0;
+  font-size: 27px;
+  font-weight: 900;
+  letter-spacing: .3px;
+  color: #0f1b1d;
+}
+
+/* logo reaproveitado */
+.header-inner .logo{
+  width: 48px;
+  height: 48px;
+  border-radius: 16px;
+  background: url("logo.jpeg") center/cover no-repeat;
+  box-shadow: 0 10px 22px rgba(0,0,0,.25);
+  border: 2px solid var(--accent);
+}
+
+/* mobile */
+@media (max-width: 520px){
+  .header-inner{
+    justify-content: center;
+  }
+  .header-inner h1{
+    font-size: 18px;
+  }
+}
   </style>
 </head>
 
 <body>
-  <div class="topbar">
-    <div class="topbar-inner">
-      <div class="brand">
-        <div class="logo" aria-hidden="true"></div>
-        <div>
-          <h1>Pesquisas Remuneradas</h1>        
+      <header class="simple-header">
+        <div class="header-inner">
+          <div class="logo"></div>
+          <h1>Pesquisas Remuneradas</h1>
         </div>
-      </div>
-
-      <nav class="nav">
-        <a class="pill" href="#como-funciona">Como funciona</a>
-        <a class="pill" href="#boas-praticas">Boas práticas</a>
-        <a class="pill primary" href="#grupos">Ver grupos</a>        
-      </nav>
-    </div>
-  </div>
-
+    </header>
   <div class="container">
  
 
@@ -373,10 +384,10 @@
           </summary>
           <div class="content">
            <p>
-    <strong>Algumas empresas conceituadas e fabricantes de produtos</strong> coletam opiniões de usuários por diversos motivos. 
-    Algumas pretendem <strong>modificar seus produtos</strong>, <strong>mudar embalagem</strong>, <strong>aroma</strong> ou até 
-    <strong>descontinuar</strong>, mas antes querem saber a <strong>opinião real de seus usuários</strong>.
-  </p>
+            <strong>Algumas empresas conceituadas e fabricantes de produtos</strong> coletam opiniões de usuários por diversos motivos. 
+            Algumas pretendem <strong>modificar seus produtos</strong>, <strong>mudar embalagem</strong>, <strong>aroma</strong> ou até 
+            <strong>descontinuar</strong>, mas antes querem saber a <strong>opinião real de seus usuários</strong>.
+          </p>
 
    
           </div>
@@ -397,7 +408,7 @@
 
             <div class="callout">
             ⚠️ <strong>Atenção:</strong> Se a pesquisa exigir o uso de PC ou notebook e você acessar pelo celular, o sistema identificará o dispositivo.
-  Isso pode resultar em <strong>exclusão automática</strong>, impedir convites futuros do mesmo recrutador e fazer com que você não receba o incentivo.
+                 Isso pode resultar na sua desqualificação automática, mesmo que você seja um candidato ideal para o estudo.     
             </div>
           </div>
         </details>
@@ -426,13 +437,14 @@
 
       
 
-    <section class="card" id="grupos" style="margin-top:16px;">
+    <section class="card" id="grupos">
       <h3>Links dos grupos</h3>
       <p class="kicker">Escolha e clique no grupo do seu estado abaixo:</p>
 
      
       <div class="groups" id="lista">
-        <!-- SP -->
+
+        <!-- ✅ São Paulo -->
         <a class="group" href="https://chat.whatsapp.com/GWYgFNeJRXhLIIS4IrYhej?mode=wwc" target="_blank" rel="noopener">
           <div>
             <p class="title">Interior de São Paulo</p>
@@ -441,7 +453,6 @@
           <span class="badge">WhatsApp</span>
         </a>
 
-        <!-- SP (1) -->
         <a class="group" href="https://chat.whatsapp.com/LdhmfFS38Op9hPUDo4TS3f?mode=hqrt2" target="_blank" rel="noopener">
           <div>
             <p class="title">São Paulo (capital e região) — Grupo 1</p>
@@ -450,16 +461,32 @@
           <span class="badge">WhatsApp</span>
         </a>
 
-        <!-- SP (2) -->
         <a class="group" href="https://chat.whatsapp.com/F2yJ3Y4qiWIEGc40D2YSNh?mode=gi_c" target="_blank" rel="noopener">
           <div>
             <p class="title">São Paulo (capital e região) — Grupo 2</p>
             <p class="desc">Grupo para moradores de São Paulo (grupo 2)</p>
           </div>
           <span class="badge">WhatsApp</span>
-        </a>        
+        </a>
 
-        <!-- RJ -->
+        <a class="group" href="https://chat.whatsapp.com/IsjgMJkaMf0BULcnO30OOB?mode=gi_c" target="_blank" rel="noopener">
+          <div>
+            <p class="title">São Paulo (capital e região) — Grupo 3</p>
+            <p class="desc">Grupo para moradores de São Paulo (grupo 3)</p>
+          </div>
+          <span class="badge">WhatsApp</span>
+        </a>
+
+        <a class="group" href="https://chat.whatsapp.com/L3vuN4aJg2kJpkI4IQOfqm?mode=gi_c" target="_blank" rel="noopener">
+          <div>
+            <p class="title">São Paulo (capital e região) — Grupo 4</p>
+            <p class="desc">Grupo para moradores de São Paulo (grupo 4)</p>
+          </div>
+          <span class="badge">WhatsApp</span>
+        </a>
+
+
+        <!-- ✅ Rio de Janeiro -->
         <a class="group" href="https://chat.whatsapp.com/E8UuHvaP9d6IuuSgEH5O6W?mode=wwc" target="_blank" rel="noopener">
           <div>
             <p class="title">Rio de Janeiro — Grupo 1</p>
@@ -468,70 +495,75 @@
           <span class="badge">WhatsApp</span>
         </a>
 
-        <a class="group" href="https://chat.whatsapp.com/HTPi9qE21upAxjtZcSN7SV?mode=gi_c" target="_blank" rel="noopener">
+        <a class="group" href="https://chat.whatsapp.com/G4kjZrRoS1u8mcx7ELE45r?mode=gi_c" target="_blank" rel="noopener">
           <div>
-            <p class="title">Rio de Janeiro — Grupo 2 </p>
+            <p class="title">Rio de Janeiro — Grupo 2</p>
             <p class="desc">Grupo para moradores do RJ</p>
           </div>
           <span class="badge">WhatsApp</span>
         </a>
 
-        <!-- BA -->
-        <a class="group" href="https://chat.whatsapp.com/HUwY0WLYNDI7xCMBT2izft?mode=wwc" target="_blank" rel="noopener">
+
+        <!-- ✅ Sudeste -->
+        <a class="group" href="https://chat.whatsapp.com/CrzvsX5wAe163o9sxpiRF3?mode=gi_c" target="_blank" rel="noopener">
           <div>
-            <p class="title">Bahia</p>
-            <p class="desc">Grupo para moradores da Bahia</p>
+            <p class="title">Minas Gerais</p>
+            <p class="desc">Grupo para moradores de MG</p>
           </div>
           <span class="badge">WhatsApp</span>
         </a>
 
-        <!-- PE -->
-        <a class="group" href="https://chat.whatsapp.com/CBnKtnDuFg37lQdqkBBRqZ?mode=wwc" target="_blank" rel="noopener">
+        <a class="group" href="https://chat.whatsapp.com/Io7c89E8xOKFRewh0R72F?mode=gi_c" target="_blank" rel="noopener">
           <div>
-            <p class="title">Pernambuco</p>
-            <p class="desc">Grupo para moradores de Pernambuco</p>
+            <p class="title">Espírito Santo</p>
+            <p class="desc">Grupo para moradores do ES</p>
           </div>
           <span class="badge">WhatsApp</span>
         </a>
 
-        <!-- CO -->
-        <a class="group" href="https://chat.whatsapp.com/Jhk1jP2Tu14EjbxzkcEoHX?mode=wwc" target="_blank" rel="noopener">
+        <a class="group" href="https://chat.whatsapp.com/EglxPDwt2nEA7ptALgVLxV?mode=gi_c" target="_blank" rel="noopener">
           <div>
-            <p class="title">Centro-Oeste</p>
-            <p class="desc">MT, MS e GO</p>
+            <p class="title">Região Sudeste</p>
+            <p class="desc">MG, SP, RJ e ES</p>
           </div>
           <span class="badge">WhatsApp</span>
         </a>
 
-        <!-- Norte -->
-        <a class="group" href="https://chat.whatsapp.com/IyP8apY6kAE3ShJPdBUOqq?mode=wwc" target="_blank" rel="noopener">
+
+        <!-- ✅ Sul -->
+        <a class="group" href="https://chat.whatsapp.com/BQ6abc3610d4KjJ6X7bnAm?mode=gi_c" target="_blank" rel="noopener">
           <div>
-            <p class="title">Região Norte</p>
-            <p class="desc">AM, PA, RR, AP, RO, AC e TO</p>
+            <p class="title">Rio Grande do Sul</p>
+            <p class="desc">Grupo para moradores do RS</p>
           </div>
           <span class="badge">WhatsApp</span>
         </a>
 
-        <!-- MG/ES -->
-        <a class="group" href="https://chat.whatsapp.com/I9v1gBXmEnd0j7f0WNarmh?mode=wwc" target="_blank" rel="noopener">
+        <a class="group" href="https://chat.whatsapp.com/H3BTZRjPlJS48jNrAYEhot?mode=gi_c" target="_blank" rel="noopener">
           <div>
-            <p class="title">Minas Gerais e Espírito Santo</p>
-            <p class="desc">Grupo para moradores de MG e ES</p>
+            <p class="title">Santa Catarina</p>
+            <p class="desc">Grupo para moradores de SC</p>
           </div>
           <span class="badge">WhatsApp</span>
         </a>
 
-        <!-- NE -->
-        <a class="group" href="https://chat.whatsapp.com/CRYtacv8VPIHduHMv4vEmo?mode=wwc" target="_blank" rel="noopener">
+        <a class="group" href="https://chat.whatsapp.com/KvLsIExCvwkEo2t6V9lrPH?mode=gi_c" target="_blank" rel="noopener">
           <div>
-            <p class="title">Região Nordeste</p>
-            <p class="desc">PI, MA, PE, RN, PB, CE, BA, AL e SE</p>
+            <p class="title">Paraná — Grupo 1</p>
+            <p class="desc">Grupo para moradores do PR</p>
           </div>
           <span class="badge">WhatsApp</span>
         </a>
 
-        <!-- Sul -->
-        <a class="group" href="https://chat.whatsapp.com/KbDJN1aN6PZCQ0nQAOJRGs?mode=wwc" target="_blank" rel="noopener">
+        <a class="group" href="https://chat.whatsapp.com/H7NJ9ZJI1Gz4v9dFO6JcXA?mode=gi_c" target="_blank" rel="noopener">
+          <div>
+            <p class="title">Paraná — Grupo 2</p>
+            <p class="desc">Grupo para moradores do PR (grupo 2)</p>
+          </div>
+          <span class="badge">WhatsApp</span>
+        </a>
+
+        <a class="group" href="https://chat.whatsapp.com/IdYyzdaBXz01kcN05BDsty?mode=gi_c" target="_blank" rel="noopener">
           <div>
             <p class="title">Região Sul</p>
             <p class="desc">PR, SC e RS</p>
@@ -539,7 +571,142 @@
           <span class="badge">WhatsApp</span>
         </a>
 
-        <!-- LGBTQIAPN+ -->
+
+        <!-- ✅ Centro-Oeste -->
+        <a class="group" href="https://chat.whatsapp.com/Jhk1jP2Tu14EjbxzkcEoHX?mode=wwc" target="_blank" rel="noopener">
+          <div>
+            <p class="title">Centro-Oeste — Grupo 1</p>
+            <p class="desc">MT, MS e GO</p>
+          </div>
+          <span class="badge">WhatsApp</span>
+        </a>
+
+        <a class="group" href="https://chat.whatsapp.com/DX9SWrGzBZVJZLLxZ8CSj?mode=gi_c" target="_blank" rel="noopener">
+          <div>
+            <p class="title">Centro-Oeste — Grupo 2</p>
+            <p class="desc">MT, MS, GO e DF</p>
+          </div>
+          <span class="badge">WhatsApp</span>
+        </a>
+
+
+        <!-- ✅ Norte -->
+        <a class="group" href="https://chat.whatsapp.com/IyP8apY6kAE3ShJPdBUOqq?mode=wwc" target="_blank" rel="noopener">
+          <div>
+            <p class="title">Região Norte — Grupo (geral)</p>
+            <p class="desc">AM, PA, RR, AP, RO, AC e TO</p>
+          </div>
+          <span class="badge">WhatsApp</span>
+        </a>
+
+        <a class="group" href="https://chat.whatsapp.com/FmoCqHAn4r8H7qXuM1qPdq?mode=gi_c" target="_blank" rel="noopener">
+          <div>
+            <p class="title">Região Norte — Grupo 1</p>
+            <p class="desc">AC, AP, AM, PA, RO, RR e TO</p>
+          </div>
+          <span class="badge">WhatsApp</span>
+        </a>
+
+        <a class="group" href="https://chat.whatsapp.com/BK4gmLwI8Jy54TndH54JwS?mode=gi_c" target="_blank" rel="noopener">
+          <div>
+            <p class="title">Região Norte — Grupo 2</p>
+            <p class="desc">AC, AP, AM, PA, RO, RR e TO</p>
+          </div>
+          <span class="badge">WhatsApp</span>
+        </a>
+
+
+        <!-- ✅ Nordeste -->
+        <a class="group" href="https://chat.whatsapp.com/CRYtacv8VPIHduHMv4vEmo?mode=wwc" target="_blank" rel="noopener">
+          <div>
+            <p class="title">Região Nordeste — Grupo 1</p>
+            <p class="desc">PI, MA, PE, RN, PB, CE, BA, AL e SE</p>
+          </div>
+          <span class="badge">WhatsApp</span>
+        </a>
+
+        <a class="group" href="https://chat.whatsapp.com/HX27xf8qkGXImMkFaaSf6k?mode=gi_c" target="_blank" rel="noopener">
+          <div>
+            <p class="title">Região Nordeste — Grupo 2</p>
+            <p class="desc">Nordeste (todos os estados)</p>
+          </div>
+          <span class="badge">WhatsApp</span>
+        </a>
+
+        <a class="group" href="https://chat.whatsapp.com/BxXuvsnBTxsC3DytsfnqrS?mode=gi_c" target="_blank" rel="noopener">
+          <div>
+            <p class="title">Região Nordeste — Grupo 3</p>
+            <p class="desc">Nordeste (todos os estados)</p>
+          </div>
+          <span class="badge">WhatsApp</span>
+        </a>
+
+        <a class="group" href="https://chat.whatsapp.com/HUwY0WLYNDI7xCMBT2izft?mode=wwc" target="_blank" rel="noopener">
+          <div>
+            <p class="title">Bahia — Grupo 1</p>
+            <p class="desc">Grupo para moradores da Bahia</p>
+          </div>
+          <span class="badge">WhatsApp</span>
+        </a>
+
+        <a class="group" href="https://chat.whatsapp.com/Iae73RnmkiTFfmyyP3H8Yb?mode=gi_t" target="_blank" rel="noopener">
+          <div>
+            <p class="title">Bahia — Grupo 2</p>
+            <p class="desc">Grupo para moradores da Bahia (grupo 2)</p>
+          </div>
+          <span class="badge">WhatsApp</span>
+        </a>
+
+        <a class="group" href="https://chat.whatsapp.com/CBnKtnDuFg37lQdqkBBRqZ?mode=wwc" target="_blank" rel="noopener">
+          <div>
+            <p class="title">Pernambuco — Grupo 1</p>
+            <p class="desc">Grupo para moradores de Pernambuco</p>
+          </div>
+          <span class="badge">WhatsApp</span>
+        </a>
+
+        <a class="group" href="https://chat.whatsapp.com/C1p6RROYI7IAQxcNXR3ZD9?mode=gi_c" target="_blank" rel="noopener">
+          <div>
+            <p class="title">Pernambuco — Grupo 2</p>
+            <p class="desc">Grupo para moradores de PE (grupo 2)</p>
+          </div>
+          <span class="badge">WhatsApp</span>
+        </a>
+
+        <a class="group" href="https://chat.whatsapp.com/CKJraNX8wXIA8ngynuVF2?mode=gi_c" target="_blank" rel="noopener">
+          <div>
+            <p class="title">Ceará</p>
+            <p class="desc">Grupo para moradores do CE</p>
+          </div>
+          <span class="badge">WhatsApp</span>
+        </a>
+
+        <a class="group" href="https://chat.whatsapp.com/IUn1STF5m4FFUFoCbRQI5n?mode=gi_t" target="_blank" rel="noopener">
+          <div>
+            <p class="title">Alagoas</p>
+            <p class="desc">Grupo para moradores de AL</p>
+          </div>
+          <span class="badge">WhatsApp</span>
+        </a>
+
+        <a class="group" href="https://chat.whatsapp.com/BPBdBPg7R8m0wH9pRpt0Fh?mode=gi_c" target="_blank" rel="noopener">
+          <div>
+            <p class="title">Maranhão</p>
+            <p class="desc">Grupo para moradores do MA</p>
+          </div>
+          <span class="badge">WhatsApp</span>
+        </a>
+
+
+        <!-- ✅ Gerais / Comunidades -->
+        <a class="group" href="https://chat.whatsapp.com/EYBuWZACRkSCIMUjTf7YVm?mode=gi_c" target="_blank" rel="noopener">
+          <div>
+            <p class="title">Todos os estados</p>
+            <p class="desc">Grupo para moradores de todos os estados</p>
+          </div>
+          <span class="badge">WhatsApp</span>
+        </a>
+
         <a class="group" href="https://chat.whatsapp.com/GX5bas5nNPXHHZhFSLspsu?mode=wwc" target="_blank" rel="noopener">
           <div>
             <p class="title">Grupo LGBTQIAPN+</p>
@@ -548,15 +715,6 @@
           <span class="badge">WhatsApp</span>
         </a>
 
-        <a class="group" href="https://chat.whatsapp.com/EYBuWZACRkSCIMUjTf7YVm?mode=gi_c" target="_blank" rel="noopener">
-          <div>
-            <p class="title">Todos os estados </p>
-            <p class="desc">Grupo para moradores de todos os estados</p>
-          </div>
-          <span class="badge">WhatsApp</span>
-        </a>  
-
-        <!-- Negros -->
         <a class="group" href="https://chat.whatsapp.com/LXRWKKIVi8FEZmfnALQioc?mode=ac_t" target="_blank" rel="noopener">
           <div>
             <p class="title">Homens e mulheres negras</p>
@@ -564,9 +722,10 @@
           </div>
           <span class="badge">WhatsApp</span>
         </a>
+
       </div>
 
-        
+ 
      
     </section>
 
